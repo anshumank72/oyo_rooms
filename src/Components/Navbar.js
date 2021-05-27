@@ -1,15 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Logo from "../assets/Logo.svg";
 import { makeStyles } from "@material-ui/core/styles";
-import { Card, Divider, Typography } from "@material-ui/core";
+import {
+  Button,
+  Card,
+  Divider,
+  Menu,
+  MenuItem,
+  Typography,
+} from "@material-ui/core";
 import LanguageIcon from "@material-ui/icons/Language";
 import InputLabel from "@material-ui/core/InputLabel";
-import FormHelperText from "@material-ui/core/FormHelperText";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
-import NativeSelect from "@material-ui/core/NativeSelect";
+import AccountCircleRoundedIcon from "@material-ui/icons/AccountCircleRounded";
+import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 
 const useStyles = makeStyles((theme) => ({
   appbar: {
@@ -17,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: "none",
     fontFamily: "Open Sans,sans-serif",
     backgroundColor: "",
-    padding: "0.5em 0",
+    padding: "0.2em 0",
   },
   logo: {
     height: "4em",
@@ -46,29 +53,34 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     alignItems: "center",
   },
-  formControl: {
-    margin: theme.spacing(1),
-    minWidth: 100,
+  button: {
+    fontSize: ".9em",
+    fontWeight: "700",
+    letterSpacing: "0",
+    "&:hover": {
+      backgroundColor: "transparent",
+    },
   },
-  selectEmpty: {
-    marginTop: theme.spacing(2),
+  login: {
+    display: "flex",
+    alignItems: "center",
+    marginRight: "1em",
   },
 }));
 
 const navbar = (props) => {
   const classes = useStyles();
-  const [state, setState] = React.useState({
-    language: "",
-    name: "English",
-  });
-
-  const handleChange = (event) => {
-    const name = event.target.name;
-    setState({
-      ...state,
-      [name]: event.target.value,
-    });
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [open, setOpen] = useState(false);
+  const handleClick = (e) => {
+    setAnchorEl(e.currentTarget);
+    setOpen(true);
   };
+  const handleClose = (e) => {
+    setAnchorEl(null);
+    setOpen(false);
+  };
+
   return (
     <AppBar position="fixed" className={classes.appbar}>
       <Toolbar>
@@ -91,26 +103,55 @@ const navbar = (props) => {
           orientation="vertical"
           style={{
             margin: "0 1em",
-            height: "4em",
+            height: "3.8em",
             width: "1px",
             color: "rgba(0,0,0,.64)",
           }}
         />
         <div className={classes.language}>
-          <LanguageIcon fontSize="large" color="secondary" />
-          <FormControl className={classes.formControl}>
-            <NativeSelect
-              variant="outlined"
-              inputProps={{
-                name: "name",
-                id: "uncontrolled-native",
-              }}
-            >
-              <option value={10}>Ten</option>
-              <option value={20}>Twenty</option>
-              <option value={30}>Thirty</option>
-            </NativeSelect>
-          </FormControl>
+          <LanguageIcon
+            fontSize="large"
+            color="secondary"
+            className={classes.icon}
+          />
+          <Button
+            disableRipple
+            className={classes.button}
+            color="secondary"
+            aria-owns={anchorEl ? "simple-menu" : undefined}
+            aria-haspopup={anchorEl ? "true" : undefined}
+            onClick={(event) => handleClick(event)}
+          >
+            English
+            <ArrowDropDownIcon />
+          </Button>
+          <Menu
+            id="simple-menu"
+            anchorEl={anchorEl}
+            open={open}
+            onClose={handleClose}
+          >
+            <MenuItem onClose={handleClose}>English</MenuItem>
+            <MenuItem onClose={handleClose}>Veitnamese</MenuItem>
+            <MenuItem onClose={handleClose}>Arabic</MenuItem>
+            <MenuItem onClose={handleClose}>Portugese</MenuItem>
+            <MenuItem onClose={handleClose}>Spanish</MenuItem>
+            <MenuItem onClose={handleClose}>Bahasa</MenuItem>
+            <MenuItem onClose={handleClose}>Japanese</MenuItem>
+          </Menu>
+        </div>
+        <Divider
+          orientation="vertical"
+          style={{
+            margin: "0 1em",
+            height: "3.8em",
+            width: "1px",
+            color: "rgba(0,0,0,.64)",
+          }}
+        />
+        <div className={classes.login}>
+          <AccountCircleRoundedIcon fontSize="large" color="secondary" />
+          <Typography style={{ marginLeft: "3px" }}>Login / Signup</Typography>
         </div>
       </Toolbar>
     </AppBar>
