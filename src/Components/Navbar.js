@@ -12,13 +12,14 @@ import {
   Typography,
 } from "@material-ui/core";
 import LanguageIcon from "@material-ui/icons/Language";
-import InputLabel from "@material-ui/core/InputLabel";
-import FormControl from "@material-ui/core/FormControl";
-import Select from "@material-ui/core/Select";
 import AccountCircleRoundedIcon from "@material-ui/icons/AccountCircleRounded";
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 
 const useStyles = makeStyles((theme) => ({
+  toolbarMargin: {
+    ...theme.mixins.toolbar,
+  },
+
   appbar: {
     borderBottom: "1px solid transparent",
     boxShadow: "none",
@@ -82,79 +83,87 @@ const navbar = (props) => {
   };
 
   return (
-    <AppBar position="fixed" className={classes.appbar}>
-      <Toolbar>
-        <img alt="company logo" className={classes.logo} src={Logo} />
-        <Card className={classes.card}>
-          <div className={classes.imagediv}>
-            <Typography className={classes.imagetext}>W</Typography>
-          </div>
+    <React.Fragment>
+      <AppBar position="fixed" className={classes.appbar}>
+        <Toolbar>
+          <img alt="company logo" className={classes.logo} src={Logo} />
+          <Card className={classes.card}>
+            <div className={classes.imagediv}>
+              <Typography className={classes.imagetext}>W</Typography>
+            </div>
 
-          <div className={classes.textdiv}>
-            <Typography color="secondary" variant="subtitle2">
-              Become a Member
-            </Typography>
-            <Typography variant="caption" style={{ color: "rgba(0,0,0,.58)" }}>
-              Addition 10% off on stays
+            <div className={classes.textdiv}>
+              <Typography color="secondary" variant="subtitle2">
+                Become a Member
+              </Typography>
+              <Typography
+                variant="caption"
+                style={{ color: "rgba(0,0,0,.58)" }}
+              >
+                Addition 10% off on stays
+              </Typography>
+            </div>
+          </Card>
+          <Divider
+            orientation="vertical"
+            style={{
+              margin: "0 1em",
+              height: "3.8em",
+              width: "1px",
+              color: "rgba(0,0,0,.64)",
+            }}
+          />
+          <div className={classes.language}>
+            <LanguageIcon
+              fontSize="large"
+              color="secondary"
+              className={classes.icon}
+            />
+            <Button
+              disableRipple
+              className={classes.button}
+              color="secondary"
+              aria-owns={anchorEl ? "simple-menu" : undefined}
+              aria-haspopup={anchorEl ? "true" : undefined}
+              onClick={(event) => handleClick(event)}
+            >
+              English
+              <ArrowDropDownIcon />
+            </Button>
+            <Menu
+              id="simple-menu"
+              anchorEl={anchorEl}
+              open={open}
+              onClose={handleClose}
+            >
+              <MenuItem onClose={handleClose}>English</MenuItem>
+              <MenuItem onClose={handleClose}>Veitnamese</MenuItem>
+              <MenuItem onClose={handleClose}>Arabic</MenuItem>
+              <MenuItem onClose={handleClose}>Portugese</MenuItem>
+              <MenuItem onClose={handleClose}>Spanish</MenuItem>
+              <MenuItem onClose={handleClose}>Bahasa</MenuItem>
+              <MenuItem onClose={handleClose}>Japanese</MenuItem>
+            </Menu>
+          </div>
+          <Divider
+            orientation="vertical"
+            style={{
+              margin: "0 1em",
+              height: "3.8em",
+              width: "1px",
+              color: "rgba(0,0,0,.64)",
+            }}
+          />
+          <div className={classes.login}>
+            <AccountCircleRoundedIcon fontSize="large" color="secondary" />
+            <Typography style={{ marginLeft: "3px" }}>
+              Login / Signup
             </Typography>
           </div>
-        </Card>
-        <Divider
-          orientation="vertical"
-          style={{
-            margin: "0 1em",
-            height: "3.8em",
-            width: "1px",
-            color: "rgba(0,0,0,.64)",
-          }}
-        />
-        <div className={classes.language}>
-          <LanguageIcon
-            fontSize="large"
-            color="secondary"
-            className={classes.icon}
-          />
-          <Button
-            disableRipple
-            className={classes.button}
-            color="secondary"
-            aria-owns={anchorEl ? "simple-menu" : undefined}
-            aria-haspopup={anchorEl ? "true" : undefined}
-            onClick={(event) => handleClick(event)}
-          >
-            English
-            <ArrowDropDownIcon />
-          </Button>
-          <Menu
-            id="simple-menu"
-            anchorEl={anchorEl}
-            open={open}
-            onClose={handleClose}
-          >
-            <MenuItem onClose={handleClose}>English</MenuItem>
-            <MenuItem onClose={handleClose}>Veitnamese</MenuItem>
-            <MenuItem onClose={handleClose}>Arabic</MenuItem>
-            <MenuItem onClose={handleClose}>Portugese</MenuItem>
-            <MenuItem onClose={handleClose}>Spanish</MenuItem>
-            <MenuItem onClose={handleClose}>Bahasa</MenuItem>
-            <MenuItem onClose={handleClose}>Japanese</MenuItem>
-          </Menu>
-        </div>
-        <Divider
-          orientation="vertical"
-          style={{
-            margin: "0 1em",
-            height: "3.8em",
-            width: "1px",
-            color: "rgba(0,0,0,.64)",
-          }}
-        />
-        <div className={classes.login}>
-          <AccountCircleRoundedIcon fontSize="large" color="secondary" />
-          <Typography style={{ marginLeft: "3px" }}>Login / Signup</Typography>
-        </div>
-      </Toolbar>
-    </AppBar>
+        </Toolbar>
+      </AppBar>
+      <div className={classes.toolbarMargin} />
+    </React.Fragment>
   );
 };
 export default navbar;

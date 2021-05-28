@@ -1,0 +1,30 @@
+[
+  {
+    "Bangalore": [
+      "Majestic",
+      "Koramangla",
+      "Indiranagar",
+      "Madiwala",
+      "Kempegowda",
+      "Marathahalli",
+      "Electronics City",
+      "Whitefeild",
+      "Jayanagar",
+      "HSR Layout"
+    ]
+  },
+  {
+    "Chennai": [
+      "Mount Road",
+      "Chennai Central",
+      "Ecr East Coast Road",
+      "Anna Nagar",
+      "T Nagar",
+      "Guindy",
+      "Tambaram",
+      "Koyambedu",
+      "Vadapalani",
+      "Chennai International"
+    ]
+  }
+]
