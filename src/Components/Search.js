@@ -4,6 +4,7 @@ import {
   Button,
   Card,
   CardContent,
+  Divider,
   Grid,
   TextField,
   Typography,
@@ -21,10 +22,31 @@ const useStyles = makeStyles((theme) => ({
   searchHeading: {
     color: "#fff",
     fontSize: "1.8rem",
+    fontFamily: "Open Sans,sans-serif",
     fontWeight: "800",
-    lineHeight: "1",
+    lineHeight: "1.5",
     margin: "16px 0",
-    letterSpacing: "1px",
+    letterSpacing: "0.5px",
+  },
+  searchCity: {
+    backgroundColor: "white",
+    width: "150%",
+  },
+  buttonSearch: {
+    borderRadius: "15px",
+    backgroundColor: "#f2f2f2",
+    width: "80px",
+    padding: "4px 6px",
+    fontSize: "0.6rem",
+  },
+  inputContainer: {
+    backgroundColor: "#fff",
+    width: "74%",
+    borderRadius: "5px",
+    border: `1px solid grey`,
+  },
+  searchInput: {
+    padding: `15px 12px`,
   },
 }));
 
@@ -33,35 +55,74 @@ const search = (props) => {
   return (
     <Grid
       container
+      spacing={0}
       direction="column"
       alignItems="center"
       className={classes.searchContainer}
     >
-      <Grid item>
+      <Grid item style={{ marginTop: "1em" }}>
         <Typography className={classes.searchHeading}>
           World's Fastest Growing Hotel Chain
         </Typography>
       </Grid>
-      <Grid item container justify="center" alignItems="center">
-        <Grid item>
-          <Grid container>
+      <Grid
+        item
+        container
+        justify="space-between"
+        alignItems="center"
+        className={classes.inputContainer}
+      >
+        <Grid item lg={5}>
+          <Grid
+            container
+            alignItems="center"
+            justify="space-between"
+            className={classes.searchInput}
+          >
             <Grid item>
               <TextField
+                className={classes.searchCity}
                 id="search city"
                 placeholder="Search by city, hotel, or neighborhood"
-                variant="outlined"
+                variant="standard"
               />
             </Grid>
             <Grid item>
-              <button variant="contained">
-                <LocationSearchingIcon />
-                <Typography>near me</Typography>
-              </button>
+              <Button
+                variant="contained"
+                startIcon={<LocationSearchingIcon />}
+                size="small"
+                disableRipple
+                disableElevation
+                className={classes.buttonSearch}
+              >
+                near me
+              </Button>
             </Grid>
           </Grid>
         </Grid>
+        <Grid item lg={1}>
+          <Divider
+            style={{
+              width: "2px",
+              height: "62px",
+              marginLeft: "-1em",
+              color: "#ded8d7",
+            }}
+          />
+        </Grid>
         <Grid item>
           <Typography>Thu,3 jun - Fri,4 jun</Typography>
+        </Grid>
+        <Grid item lg={1}>
+          <Divider
+            style={{
+              width: "2px",
+              height: "62px",
+              marginLeft: "-5em",
+              color: "#ded8d7",
+            }}
+          />
         </Grid>
         <Grid item>
           <Typography>1 Room, 1 Guest</Typography>

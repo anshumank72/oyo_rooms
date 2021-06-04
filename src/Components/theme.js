@@ -13,5 +13,17 @@ const theme = createMuiTheme({
       main: "rgba(0,0,0,.64)",
     },
   },
+  overrides: {
+    MuiInput: {
+      underline: {
+        "&:before": {
+          borderBottom: "0",
+        },
+        "&:hover:not($disabled):not($focused):not($error):before": {
+          borderBottom: "0",
+        },
+      },
+    },
+  },
 });
 export default theme;
