@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import {
   Button,
@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "1.8rem",
     fontFamily: "Open Sans,sans-serif",
     fontWeight: "800",
-    lineHeight: "1.5",
+    lineHeight: "1.8",
     margin: "16px 0",
     letterSpacing: "0.5px",
   },
@@ -48,10 +48,30 @@ const useStyles = makeStyles((theme) => ({
   searchInput: {
     padding: `15px 12px`,
   },
+  buttonSearchHotel: {
+    backgroundColor: "#1ab64f",
+    padding: "20px 50px",
+    color: "white",
+    fontWeight: "500",
+    letterSpacing: "1px",
+    "&:hover": {
+      backgroundColor: "green",
+    },
+  },
+  card: {
+    backgroundColor: "transparent",
+    boxShadow: "none",
+    height: "38px",
+    width: "160px",
+    border: "2px solid #fff",
+    color: "#fff",
+    textAlign: "center",
+  },
 }));
 
-const search = (props) => {
+const search = () => {
   const classes = useStyles();
+
   return (
     <Grid
       container
@@ -111,8 +131,18 @@ const search = (props) => {
             }}
           />
         </Grid>
-        <Grid item>
-          <Typography>Thu,3 jun - Fri,4 jun</Typography>
+        <Grid item style={{ marginLeft: "-4em" }}>
+          <form className={classes.container} noValidate>
+            <TextField
+              id="date-local"
+              type="date-local"
+              defaultValue={new Date(Date.now()).toLocaleString().split(",")[0]}
+              className={classes.textField}
+              InputLabelProps={{
+                shrink: true,
+              }}
+            />
+          </form>
         </Grid>
         <Grid item lg={1}>
           <Divider
@@ -124,21 +154,46 @@ const search = (props) => {
             }}
           />
         </Grid>
-        <Grid item>
+        <Grid item style={{ marginLeft: "-9em" }}>
           <Typography>1 Room, 1 Guest</Typography>
         </Grid>
         <Grid>
-          <Button variant="contained">Search</Button>
+          <Button
+            variant="contained"
+            className={classes.buttonSearchHotel}
+            size="large"
+            disableRipple
+            disableElevation
+          >
+            Search
+          </Button>
         </Grid>
       </Grid>
-      <Grid item container>
-        <Grid item>
-          <Typography>Continue your search</Typography>
+      <Grid
+        item
+        container
+        justify="center"
+        alignItems="center"
+        style={{ marginLeft: "-45em", marginTop: "2em" }}
+      >
+        <Grid item style={{ marginRight: "3em" }}>
+          <Typography
+            style={{
+              color: "#fff",
+              fontSize: "1rem",
+              fontWeight: "500",
+              letterSpacing: "1px",
+            }}
+          >
+            Continue your search
+          </Typography>
         </Grid>
         <Grid item>
-          <Card>
+          <Card className={classes.card}>
             <CardContent>
-              <Typography>Bangalore . 2 Guests</Typography>
+              <Typography style={{ fontSize: "13px", marginTop: "-5px" }}>
+                Bangalore . 2 Guests
+              </Typography>
             </CardContent>
           </Card>
         </Grid>
