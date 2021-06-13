@@ -39,6 +39,9 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: "100",
     padding: "0 8px",
   },
+  iconroot: {
+    minWidth: "2em",
+  },
 }));
 
 const oyoExpanding = (props) => {
@@ -255,43 +258,59 @@ const oyoExpanding = (props) => {
                 </div>
               </Breadcrumbs>
             </div>
-            <List component="ul" aria-label="main countries folders">
+            <List
+              component="ul"
+              aria-label="main countries folders"
+              style={{ marginLeft: "-14px" }}
+            >
               <div style={{ display: "flex" }}>
                 <ListItem>
-                  <ListItemIcon>
-                    <FiberManualRecordIcon fontSize="small" />
+                  <ListItemIcon classes={{ root: classes.iconroot }}>
+                    <FiberManualRecordIcon
+                      style={{ color: "rgb(26, 182, 79)", fontSize: "14px" }}
+                    />
                   </ListItemIcon>
                   <ListItemText primary="India" />
                 </ListItem>
                 <ListItem>
-                  <ListItemIcon>
-                    <FiberManualRecordIcon fontSize="small" />
+                  <ListItemIcon classes={{ root: classes.iconroot }}>
+                    <FiberManualRecordIcon
+                      style={{ color: "rgb(255, 127, 123)", fontSize: "14px" }}
+                    />
                   </ListItemIcon>
                   <ListItemText primary="China" />
                 </ListItem>
                 <ListItem>
-                  <ListItemIcon>
-                    <FiberManualRecordIcon fontSize="small" />
+                  <ListItemIcon classes={{ root: classes.iconroot }}>
+                    <FiberManualRecordIcon
+                      style={{ color: "rgb(245, 166, 35)", fontSize: "14px" }}
+                    />
                   </ListItemIcon>
                   <ListItemText primary="Malaysia" />
                 </ListItem>
               </div>
               <div style={{ display: "flex" }}>
                 <ListItem>
-                  <ListItemIcon>
-                    <FiberManualRecordIcon fontSize="small" />
+                  <ListItemIcon classes={{ root: classes.iconroot }}>
+                    <FiberManualRecordIcon
+                      style={{ color: "rgb(95, 214, 242)", fontSize: "14px" }}
+                    />
                   </ListItemIcon>
                   <ListItemText primary="Nepal" />
                 </ListItem>
                 <ListItem>
-                  <ListItemIcon>
-                    <FiberManualRecordIcon fontSize="small" />
+                  <ListItemIcon classes={{ root: classes.iconroot }}>
+                    <FiberManualRecordIcon
+                      style={{ color: "rgb(254, 148, 241)", fontSize: "14px" }}
+                    />
                   </ListItemIcon>
                   <ListItemText primary="Indonesia" />
                 </ListItem>
                 <ListItem>
-                  <ListItemIcon>
-                    <FiberManualRecordIcon fontSize="small" />
+                  <ListItemIcon classes={{ root: classes.iconroot }}>
+                    <FiberManualRecordIcon
+                      style={{ color: "rgb(126, 137, 228)", fontSize: "14px" }}
+                    />
                   </ListItemIcon>
                   <ListItemText primary="UAE" />
                 </ListItem>
@@ -304,91 +323,3 @@ const oyoExpanding = (props) => {
   );
 };
 export default oyoExpanding;
-/*<Grid container className={classes.container} justify="space-around">
-        <Grid item className={classes.mapSection} lg={6}>
-          <Grid container className={classes.mapBox}>
-            <Grid item>
-              <img
-                src="https://assets.oyoroomscdn.com/cmsMedia/432737_widgetCountryItems_itemImage_6.jpg"
-                alt="UAE"
-                style={{
-                  height: "130px",
-                  width: "110px",
-                  position: "absolute",
-                  top: "64px",
-                  left: "131px",
-                }}
-              />
-            </Grid>
-            <Grid item>
-              <img
-                src="https://assets.oyoroomscdn.com/cmsMedia/432737_widgetCountryItems_itemImage_4.jpg"
-                alt="NEPAL"
-                style={{
-                  height: "130px",
-                  width: "110px",
-                  position: "absolute",
-                  top: "35px",
-                  left: "310px",
-                }}
-              />
-            </Grid>
-            <Grid item>
-              <img
-                src="https://assets.oyoroomscdn.com/cmsMedia/432737_widgetCountryItems_itemImage_1.jpg"
-                alt="INDIA"
-                style={{
-                  height: "130px",
-                  width: "110px",
-                  position: "absolute",
-                  top: "175px",
-                  left: "275px",
-                }}
-              />
-            </Grid>
-            <Grid item>
-              <img
-                src="https://assets.oyoroomscdn.com/cmsMedia/432737_widgetCountryItems_itemImage_2.jpg"
-                alt="CHINA"
-                style={{
-                  height: "130px",
-                  width: "110px",
-                  position: "absolute",
-                  top: "11px",
-                  left: "450px",
-                }}
-              />
-            </Grid>
-            <Grid item>
-              <img
-                src="https://assets.oyoroomscdn.com/cmsMedia/432737_widgetCountryItems_itemImage_3.jpg"
-                alt="MALAYSIA"
-                style={{
-                  height: "110px",
-                  width: "130px",
-                  position: "absolute",
-                  top: "155px",
-                  left: "430px",
-                }}
-              />
-            </Grid>
-            <Grid item>
-              <img
-                src="https://assets.oyoroomscdn.com/cmsMedia/432737_widgetCountryItems_itemImage_5.jpg"
-                alt="INDONSIA"
-                style={{
-                  height: "130px",
-                  width: "110px",
-                  position: "absolute",
-                  top: "261px",
-                  left: "377px",
-                }}
-              />
-            </Grid>
-          </Grid>
-        </Grid>
-        <Grid item lg={6}>
-          txt
-        </Grid>
-      </Grid>
-      */
