@@ -4,6 +4,7 @@ import Search from "../Components/Search";
 import AdvertisingBanner from "../Components/AdvertisingBanner";
 import MailForm from "../Components/MailForm";
 import OyoExpanding from "../Components/OyoExpanding";
+import Footer from "../Components/Footer";
 
 class Home extends Component {
   render() {
@@ -14,6 +15,7 @@ class Home extends Component {
         <AdvertisingBanner />
         <MailForm />
         <OyoExpanding />
+        <Footer />
       </div>
     );
   }

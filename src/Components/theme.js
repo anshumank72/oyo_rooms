@@ -13,6 +13,12 @@ const theme = createMuiTheme({
       main: "rgba(0,0,0,.64)",
     },
   },
+  typography: {
+    h5: {
+      fontSize: "24px",
+      fontWeight: "500",
+    },
+  },
   overrides: {
     MuiInput: {
       underline: {
