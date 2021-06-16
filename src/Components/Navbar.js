@@ -14,6 +14,7 @@ import {
 import LanguageIcon from "@material-ui/icons/Language";
 import AccountCircleRoundedIcon from "@material-ui/icons/AccountCircleRounded";
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   toolbarMargin: {
@@ -65,7 +66,12 @@ const useStyles = makeStyles((theme) => ({
   login: {
     display: "flex",
     alignItems: "center",
+    padding: "15px 20px",
     marginRight: "1em",
+    cursor: "pointer",
+    "&:hover": {
+      backgroundColor: "rgba(0,0,0,.10)",
+    },
   },
 }));
 
@@ -156,7 +162,15 @@ const navbar = (props) => {
           />
           <div className={classes.login}>
             <AccountCircleRoundedIcon fontSize="large" color="secondary" />
-            <Typography style={{ marginLeft: "3px" }}>
+            <Typography
+              style={{
+                marginLeft: "3px",
+                textDecoration: "none",
+                color: "rgba(0,0,0,.64)",
+              }}
+              component={Link}
+              to="/login"
+            >
               Login / Signup
             </Typography>
           </div>

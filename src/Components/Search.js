@@ -105,6 +105,7 @@ const search = () => {
                 id="search city"
                 placeholder="Search by city, hotel, or neighborhood"
                 variant="standard"
+                disableUnderline="true"
               />
             </Grid>
             <Grid item>
