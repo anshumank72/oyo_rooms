@@ -32,6 +32,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "white",
     width: "150%",
   },
+
   buttonSearch: {
     borderRadius: "15px",
     backgroundColor: "#f2f2f2",

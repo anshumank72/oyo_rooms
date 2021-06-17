@@ -1,5 +1,5 @@
-import { Card, Grid, Typography } from "@material-ui/core";
-import React from "react";
+import { Card, Grid, TextField, Typography } from "@material-ui/core";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/styles";
 const useStyles = makeStyles((theme) => ({
   mainContainer: {
@@ -8,6 +8,8 @@ const useStyles = makeStyles((theme) => ({
     backgroundSize: "cover",
     width: "100%",
     height: "100vh",
+    opacity: "1",
+    margin: "0 auto",
   },
   oyoIcon: {
     fontSize: "2.7rem",
@@ -15,10 +17,21 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: "Roboto",
     color: "#fff",
   },
+  textItem: {
+    padding: "90px 80px 0 220px",
+  },
+  root: {
+    color: "red",
+  },
 }));
 
 const login = (props) => {
   const classes = useStyles();
+  const [login, setLogin] = useState(false);
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
   return (
     <Grid container className={classes.mainContainer} direction="column">
       <Grid item>
@@ -39,25 +52,129 @@ const login = (props) => {
       </Grid>
       <Grid item>
         <Grid container>
-          <Grid item>
-            <Grid container direction="column">
+          <Grid item className={classes.textItem}>
+            <Grid container direction="column" style={{ color: "#fff" }}>
               <Grid item>
-                <Typography>
+                <Typography
+                  style={{
+                    fontSize: "48px",
+                    fontWeight: "700",
+                    lineHeight: "1.04",
+                    margin: "0",
+                    padding: "0 0 17px",
+                    fontFamily: "Sans-serif",
+                  }}
+                >
                   There’s a smarter way <br />
                   to OYO around
                 </Typography>
               </Grid>
-              <Grid item>
+              <Grid
+                item
+                style={{
+                  fontSize: "16px",
+                  fontWeight: "600",
+                  lineHeight: "1.56",
+                  margin: "0",
+                  fontFamily: "Sans-serif",
+                  letterSpacing: "1px",
+                }}
+              >
                 Sign up with your phone number and get exclusive access to
                 discounts and <br /> savings on OYO stays and with our many
                 travel partners.
               </Grid>
             </Grid>
           </Grid>
-          <Grid item>
-            <Card>
+          <Grid item style={{ margin: "15px 10px 88px 0" }}>
+            <Card style={{ width: "480px", height: "fit-content" }}>
               <Grid container direction="column">
-                <Grid item></Grid>
+                <Grid
+                  item
+                  style={{
+                    backgroundImage: "linear-gradient(270deg,#d11450,#ee2a24)",
+                    padding: "5px 20px",
+                  }}
+                >
+                  <Typography
+                    style={{
+                      fontSize: "14px",
+                      fontWeight: "700",
+                      lineHeight: "2",
+                      color: "#fff",
+                      letterSpaing: "1px",
+                    }}
+                  >
+                    Sign up & Get ₹500 OYO Money
+                  </Typography>
+                </Grid>
+                <Grid item style={{ width: "100%", padding: "24px 32px" }}>
+                  <Grid container direction="column" alignItems="flex-start">
+                    <Grid item style={{ marginBottom: "20px" }}>
+                      <Typography
+                        style={{
+                          fontSize: "32px",
+                          fontWeight: "700",
+                          lineHeight: "1.5",
+                        }}
+                      >
+                        Login / Signup
+                      </Typography>
+                    </Grid>
+                    {login ? (
+                      <div>
+                        <Grid item>
+                          <TextField
+                            type="text"
+                            id="username"
+                            label="Username"
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
+                          />
+                        </Grid>
+                        <Grid item>
+                          <TextField
+                            type="password"
+                            id="password"
+                            label="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                          />
+                        </Grid>
+                      </div>
+                    ) : (
+                      <div>
+                        <Grid item>
+                          <TextField
+                            type="text"
+                            id="username"
+                            label="Username"
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
+                          />
+                        </Grid>
+                        <Grid item>
+                          <TextField
+                            type="email"
+                            id="email"
+                            label="email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                          />
+                        </Grid>
+                        <Grid item>
+                          <TextField
+                            type="password"
+                            id="password"
+                            label="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                          />
+                        </Grid>
+                      </div>
+                    )}
+                  </Grid>
+                </Grid>
               </Grid>
             </Card>
           </Grid>
