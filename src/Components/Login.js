@@ -1,6 +1,14 @@
-import { Card, Grid, TextField, Typography } from "@material-ui/core";
+import {
+  Button,
+  Card,
+  Divider,
+  Grid,
+  TextField,
+  Typography,
+} from "@material-ui/core";
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/styles";
+import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 const useStyles = makeStyles((theme) => ({
   mainContainer: {
     backgroundImage:
@@ -109,70 +117,155 @@ const login = (props) => {
                   </Typography>
                 </Grid>
                 <Grid item style={{ width: "100%", padding: "24px 32px" }}>
-                  <Grid container direction="column" alignItems="flex-start">
-                    <Grid item style={{ marginBottom: "20px" }}>
-                      <Typography
-                        style={{
-                          fontSize: "32px",
-                          fontWeight: "700",
-                          lineHeight: "1.5",
-                        }}
-                      >
-                        Login / Signup
-                      </Typography>
+                  {login ? (
+                    <Grid container direction="column" alignItems="flex-start">
+                      <Grid item style={{ marginBottom: "20px" }}>
+                        <Typography
+                          style={{
+                            fontSize: "32px",
+                            fontWeight: "700",
+                            lineHeight: "1.5",
+                          }}
+                        >
+                          Login / Signup
+                        </Typography>
+                      </Grid>
+                      <Grid item>
+                        <TextField
+                          type="text"
+                          id="username"
+                          label=" enter Username"
+                          value={username}
+                          onChange={(e) => setUsername(e.target.value)}
+                        />
+                      </Grid>
+                      <Grid item>
+                        <TextField
+                          type="password"
+                          id="password"
+                          label="enter password"
+                          value={password}
+                          onChange={(e) => setPassword(e.target.value)}
+                        />
+                      </Grid>
+                      <Grid item style={{ marginTop: "20px" }}>
+                        <Button
+                          variant="contained"
+                          disableElevation
+                          style={{ padding: "7px 35px" }}
+                        >
+                          Signup
+                        </Button>
+                      </Grid>
                     </Grid>
-                    {login ? (
-                      <div>
-                        <Grid item>
-                          <TextField
-                            type="text"
-                            id="username"
-                            label="Username"
-                            value={username}
-                            onChange={(e) => setUsername(e.target.value)}
-                          />
+                  ) : (
+                    <Grid container direction="column" alignItems="flex-start">
+                      <Grid item style={{ marginBottom: "20px" }}>
+                        <Typography
+                          style={{
+                            fontSize: "32px",
+                            fontWeight: "700",
+                            lineHeight: "1.5",
+                          }}
+                        >
+                          Login / Signup
+                        </Typography>
+                      </Grid>
+                      <Grid item>
+                        <TextField
+                          type="text"
+                          id="username"
+                          label="set Username"
+                          value={username}
+                          onChange={(e) => setUsername(e.target.value)}
+                        />
+                      </Grid>
+                      <Grid item>
+                        <TextField
+                          type="email"
+                          id="email"
+                          label=" set email"
+                          value={email}
+                          onChange={(e) => setEmail(e.target.value)}
+                        />
+                      </Grid>
+                      <Grid item>
+                        <TextField
+                          type="password"
+                          id="password"
+                          label=" set password"
+                          value={password}
+                          onChange={(e) => setPassword(e.target.value)}
+                        />
+                      </Grid>
+                      <Grid item style={{ marginTop: "20px" }}>
+                        <Button
+                          variant="contained"
+                          disableElevation
+                          style={{ padding: "7px 35px" }}
+                        >
+                          Signup
+                        </Button>
+                      </Grid>
+                      <Grid item>
+                        <Grid container alignItems="center">
+                          <Grid item>
+                            <Typography>Already have an account ?</Typography>
+                          </Grid>
+                          <Grid item>
+                            <Button onClick={() => setLogin(true)}>
+                              Login
+                            </Button>
+                          </Grid>
+                        </Grid>
+                      </Grid>
+                    </Grid>
+                  )}
+                </Grid>
+                <Grid item style={{ paddingLeft: "30px" }}>
+                  <Grid container direction="column">
+                    <Grid item style={{ marginBottom: "15px" }}>
+                      <Typography>Or Sign as</Typography>
+                    </Grid>
+                    <Grid item>
+                      <Grid container alignItems="center">
+                        <Grid
+                          item
+                          style={{
+                            fontSize: "18px",
+                            padding: "10px 20px 10px 0",
+                          }}
+                        >
+                          <Grid container>
+                            <Grid item>
+                              <Typography>Travel Agent </Typography>
+                            </Grid>
+                            <Grid item>
+                              <ArrowForwardIosIcon fontSize="small" />
+                            </Grid>
+                          </Grid>
                         </Grid>
                         <Grid item>
-                          <TextField
-                            type="password"
-                            id="password"
-                            label="password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                          />
+                          <Divider style={{ height: "30px", width: "2px" }} />
                         </Grid>
-                      </div>
-                    ) : (
-                      <div>
-                        <Grid item>
-                          <TextField
-                            type="text"
-                            id="username"
-                            label="Username"
-                            value={username}
-                            onChange={(e) => setUsername(e.target.value)}
-                          />
+                        <Grid
+                          item
+                          style={{
+                            fontSize: "18px",
+                            padding: "10px 0 10px 20px",
+                          }}
+                        >
+                          <Grid container>
+                            <Grid item>
+                              <Typography>Corporate</Typography>
+                            </Grid>
+                            <Grid item>
+                              <ArrowForwardIosIcon fontSize="small" />
+                            </Grid>
+                          </Grid>
                         </Grid>
-                        <Grid item>
-                          <TextField
-                            type="email"
-                            id="email"
-                            label="email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                          />
-                        </Grid>
-                        <Grid item>
-                          <TextField
-                            type="password"
-                            id="password"
-                            label="password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                          />
-                        </Grid>
-                      </div>
-                    )}
+                      </Grid>
+                    </Grid>
                   </Grid>
                 </Grid>
               </Grid>
