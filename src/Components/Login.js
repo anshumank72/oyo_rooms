@@ -6,9 +6,11 @@ import {
   TextField,
   Typography,
 } from "@material-ui/core";
+import { signUp, logIn } from "../Redux/action";
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/styles";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
+import { connect } from "react-redux";
 const useStyles = makeStyles((theme) => ({
   mainContainer: {
     backgroundImage:
@@ -39,6 +41,10 @@ const login = (props) => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const handleSigUp = (e) => {
+    e.preventDefault();
+  };
 
   return (
     <Grid container className={classes.mainContainer} direction="column">
@@ -154,7 +160,7 @@ const login = (props) => {
                           disableElevation
                           style={{ padding: "7px 35px" }}
                         >
-                          Signup
+                          Login
                         </Button>
                       </Grid>
                     </Grid>
@@ -222,13 +228,17 @@ const login = (props) => {
                     </Grid>
                   )}
                 </Grid>
-                <Grid item style={{ paddingLeft: "30px" }}>
+                <Grid item style={{ paddingLeft: "30px", marginTop: "20px" }}>
                   <Grid container direction="column">
                     <Grid item style={{ marginBottom: "15px" }}>
                       <Typography>Or Sign as</Typography>
                     </Grid>
                     <Grid item>
-                      <Grid container alignItems="center">
+                      <Grid
+                        container
+                        alignItems="center"
+                        style={{ paddingBottom: "10px" }}
+                      >
                         <Grid
                           item
                           style={{
@@ -276,4 +286,14 @@ const login = (props) => {
     </Grid>
   );
 };
-export default login;
+
+const mapStateToProps = (state) => ({
+  isLogged: state.isLogged,
+  flag: state.flag,
+  home: state.home,
+});
+const mapDispatchToProps = (dispatch) => ({
+  signUp: (payload) => dispatch(signUp(payload)),
+  logIn: (payload) => dispatch(logIn(payload)),
+});
+export default connect(mapStateToProps, mapDispatchToProps)(login);
