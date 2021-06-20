@@ -11,6 +11,8 @@ import React, { useState } from "react";
 import { makeStyles } from "@material-ui/styles";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import { connect } from "react-redux";
+
+import { Redirect } from "react-router";
 const useStyles = makeStyles((theme) => ({
   mainContainer: {
     backgroundImage:
@@ -35,15 +37,35 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const login = (props) => {
+const login = ({ isLogged, flag, home, signUp, logIn }) => {
   const classes = useStyles();
   const [login, setLogin] = useState(false);
   const [username, setUsername] = useState("");
+  const [usernamelog, setUsernamelog] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [passwordlog, setPasswordlog] = useState("");
 
-  const handleSigUp = (e) => {
+  const handleSignUp = (e) => {
     e.preventDefault();
+    const item = { username, email, password };
+    localStorage.setItem("signUp-info", JSON.stringify(item));
+    signUp(!isLogged);
+  };
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    let user = JSON.parse(localStorage.getItem("signUp-info"));
+    localStorage.setItem("login-info", JSON.stringify(user));
+    if (!usernamelog || !passwordlog) {
+      logIn(!flag);
+      console.log("empty");
+    } else if (usernamelog != user.username || passwordlog != user.password) {
+      logIn(!flag);
+    } else {
+      logIn(!flag);
+      logIn(!home);
+    }
   };
 
   return (
@@ -124,46 +146,62 @@ const login = (props) => {
                 </Grid>
                 <Grid item style={{ width: "100%", padding: "24px 32px" }}>
                   {login ? (
-                    <Grid container direction="column" alignItems="flex-start">
-                      <Grid item style={{ marginBottom: "20px" }}>
-                        <Typography
-                          style={{
-                            fontSize: "32px",
-                            fontWeight: "700",
-                            lineHeight: "1.5",
-                          }}
-                        >
-                          Login / Signup
-                        </Typography>
+                    home ? (
+                      <Grid
+                        container
+                        direction="column"
+                        alignItems="flex-start"
+                      >
+                        <Grid item style={{ marginBottom: "20px" }}>
+                          <Typography
+                            style={{
+                              fontSize: "32px",
+                              fontWeight: "700",
+                              lineHeight: "1.5",
+                            }}
+                          >
+                            Login / Signup
+                          </Typography>
+                        </Grid>
+                        <Grid item style={{ marginBottom: "10px" }}>
+                          <TextField
+                            type="text"
+                            id="username"
+                            label=" enter Username"
+                            value={usernamelog}
+                            onChange={(e) => setUsernamelog(e.target.value)}
+                          />
+                        </Grid>
+                        <Grid item style={{ marginBottom: "10px" }}>
+                          <TextField
+                            type="password"
+                            id="password"
+                            label="enter password"
+                            value={passwordlog}
+                            onChange={(e) => setPasswordlog(e.target.value)}
+                          />
+                        </Grid>
+                        <Grid item style={{ marginTop: "20px" }}>
+                          <Button
+                            variant="contained"
+                            disableElevation
+                            style={{ padding: "7px 35px" }}
+                            onClick={handleLogin}
+                          >
+                            Login
+                          </Button>
+                        </Grid>
+                        <Grid item>
+                          {flag && (
+                            <Typography>
+                              Fill correct Info else keep trying.
+                            </Typography>
+                          )}
+                        </Grid>
                       </Grid>
-                      <Grid item>
-                        <TextField
-                          type="text"
-                          id="username"
-                          label=" enter Username"
-                          value={username}
-                          onChange={(e) => setUsername(e.target.value)}
-                        />
-                      </Grid>
-                      <Grid item>
-                        <TextField
-                          type="password"
-                          id="password"
-                          label="enter password"
-                          value={password}
-                          onChange={(e) => setPassword(e.target.value)}
-                        />
-                      </Grid>
-                      <Grid item style={{ marginTop: "20px" }}>
-                        <Button
-                          variant="contained"
-                          disableElevation
-                          style={{ padding: "7px 35px" }}
-                        >
-                          Login
-                        </Button>
-                      </Grid>
-                    </Grid>
+                    ) : (
+                      <Redirect to="/" />
+                    )
                   ) : (
                     <Grid container direction="column" alignItems="flex-start">
                       <Grid item style={{ marginBottom: "20px" }}>
@@ -177,7 +215,7 @@ const login = (props) => {
                           Login / Signup
                         </Typography>
                       </Grid>
-                      <Grid item>
+                      <Grid item style={{ marginBottom: "10px" }}>
                         <TextField
                           type="text"
                           id="username"
@@ -186,7 +224,7 @@ const login = (props) => {
                           onChange={(e) => setUsername(e.target.value)}
                         />
                       </Grid>
-                      <Grid item>
+                      <Grid item style={{ marginBottom: "10px" }}>
                         <TextField
                           type="email"
                           id="email"
@@ -195,7 +233,7 @@ const login = (props) => {
                           onChange={(e) => setEmail(e.target.value)}
                         />
                       </Grid>
-                      <Grid item>
+                      <Grid item style={{ marginBottom: "10px" }}>
                         <TextField
                           type="password"
                           id="password"
@@ -209,6 +247,10 @@ const login = (props) => {
                           variant="contained"
                           disableElevation
                           style={{ padding: "7px 35px" }}
+                          onClick={(e) => {
+                            setLogin(true);
+                            handleSignUp(e);
+                          }}
                         >
                           Signup
                         </Button>

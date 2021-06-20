@@ -1,7 +1,7 @@
 import { SIGN_UP, LOG_IN } from "./actionTypes";
 
 const initialState = {
-  isLogged: true,
+  isLogged: false,
   flag: false,
   home: true,
 };
@@ -21,7 +21,7 @@ const reducer = (state = initialState, action) => {
       };
 
     default:
-      break;
+      return state;
   }
 };
 export default reducer;

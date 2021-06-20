@@ -11,6 +11,7 @@ import {
   MenuItem,
   Typography,
 } from "@material-ui/core";
+import { connect } from "react-redux";
 import LanguageIcon from "@material-ui/icons/Language";
 import AccountCircleRoundedIcon from "@material-ui/icons/AccountCircleRounded";
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
@@ -75,10 +76,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const navbar = (props) => {
+const navbar = ({ isLogged }) => {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState(null);
   const [open, setOpen] = useState(false);
+
+  let user = JSON.parse(localStorage.getItem("signUp-info"));
   const handleClick = (e) => {
     setAnchorEl(e.currentTarget);
     setOpen(true);
@@ -171,7 +174,7 @@ const navbar = (props) => {
               component={Link}
               to="/login"
             >
-              Login / Signup
+              {isLogged ? `Welcome ${user.username}` : "Login / Signup"}
             </Typography>
           </div>
         </Toolbar>
@@ -180,4 +183,7 @@ const navbar = (props) => {
     </React.Fragment>
   );
 };
-export default navbar;
+const mapStateToProps = (state) => ({
+  isLogged: state.isLogged,
+});
+export default connect(mapStateToProps)(navbar);
